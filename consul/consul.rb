@@ -56,6 +56,16 @@ class Consul
       return nil
     end
   end
+
+  def delkey(k)
+    begin
+      http = Curl::Easy.new(@baseurl + k).http_delete
+      return (http == 'true')
+    rescue Exception => e
+      puts e.inspect
+      return false
+    end
+  end
 end
 # -----------------------------------------------------------------------------
 
